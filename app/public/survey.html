@@ -194,14 +194,11 @@
 
   </div>
 
-
   <script type="text/javascript">
       
       $("#submit").on("click", function(event){
         event.preventDefault();
 
-        // var value = $("#q1").val();
-        // console.log(value);
         var scoresArray ="";
        
         for (var i = 1; i < 11; i++) {
@@ -212,13 +209,14 @@
         var newSurvey = {
                 "name": $("#name").val().trim(),
                 "photo":$("#photo").val().trim(),
-                score: scoresArray
+                scores: scoresArray
                 }
 
        console.log(newSurvey);
 
         $.post("/api/friends",newSurvey,function(data) {
-            console.log("my return" + data);
+            console.log("Your closest match is" + data.name);
+            console.log("Here is their picture " + data.photo);
         });
         
       });

@@ -12,12 +12,10 @@ module.exports = function(app) {
   app.post("/api/friends", function(req,res) {
     friendsData.push(req.body);
 
-    console.log("scores " + req.body.score);
-
     console.log(req.body);
     console.log(req.body.name);
     console.log(req.body.photo);
-    var resultScore = req.body.score;
+    var resultScore = req.body.scores;
 
     var scoreArray = Array.from(resultScore);
 
@@ -71,7 +69,7 @@ module.exports = function(app) {
     // console.log("You match closest with " + clo)
       res.json({
         "name": closetMatchName,
-        "picture": closetMatchPicture,
+        "photo": closetMatchPicture,
       });
   });
 }
