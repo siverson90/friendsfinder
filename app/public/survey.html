@@ -187,21 +187,22 @@
     </div>
 
   <script type="text/javascript">
-      
+      $(".chosen-select").attr("required")
+
       $("#submit").on("click", function(event){
         event.preventDefault();
 
-        var scoresArray ="";
+        var scoresString ="";
        
         for (var i = 1; i < 11; i++) {
-            scoresArray += $('#q'+i).val();
+            scoresString += $('#q'+i).val();
         }
-        console.log(scoresArray);
+        console.log(scoresString);
 
         var newSurvey = {
                 "name": $("#name").val().trim(),
                 "photo":$("#photo").val().trim(),
-                scores: scoresArray
+                scores: scoresString
                 }
 
        console.log(newSurvey);
@@ -215,7 +216,12 @@
 
             $("#modal").append("<p>" + data.name+ "</p>");
             // add link for url image
-            $("#modal").append("<img" + " src="+ data.photo+ ">");
+            var newImage = $("<img>");
+            newImage.addClass("modalImage");
+            newImage.attr("src", data.photo);
+            newImage.attr("width" , "300px");
+
+            $("#modal").append(newImage);
             }
             showModal();
         });
