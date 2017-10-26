@@ -10,14 +10,18 @@ module.exports = function(app) {
   });
 
   app.post("/api/friends", function(req,res) {
-    friendsData.push(req.body);
+    
 
-    console.log(req.body);
-    console.log(req.body.name);
-    console.log(req.body.photo);
     var resultScore = req.body.scores;
-
     var scoreArray = Array.from(resultScore);
+
+    var newUser = {
+      "name": req.body.name,
+      "photo": req.body.photo,
+      "scores": scoreArray
+    }
+
+    friendsData.push(newUser);
 
     // Do a sum of the new survey result
     var currentSurvey = req.body.scores;
